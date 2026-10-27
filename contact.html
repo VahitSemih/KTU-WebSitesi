@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İletişim ve Ulaşım | Karadeniz Teknik Üniversitesi</title>
+  <meta name="description" content="Karadeniz Teknik Üniversitesi Kanuni Kampüsü iletişim bilgileri, telefon rehberi, birimler ve ulaşım haritası.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Dosyası -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* İletişim Sayfası Özel Stilleri */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3.5rem;
+    }
+
+    .contact-form-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-form-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+    }
+
+    .info-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--ktu-blue-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .info-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .info-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .map-frame-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      height: 280px;
+    }
+
+    .map-frame-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Dahili Rehber Tablosu */
+    .phone-directory-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .phone-directory-table th,
+    .phone-directory-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .phone-directory-table th {
+      background: var(--bg-tertiary);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .phone-directory-table td {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 1024px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Üst Bilgi Çubuğu -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="research-badge"><i class="fa-solid fa-award"></i> Araştırma Üniversitesi</span>
+        <div class="top-bar-links">
+          <a href="contact.html"><i class="fa-solid fa-location-dot"></i> Trabzon, Kanuni Kampüsü</a>
+          <a href="tel:04623773000"><i class="fa-solid fa-phone"></i> +90 462 377 3000</a>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Karanlık Moda Geç"><i class="fa-solid fa-moon"></i></button>
+        <div class="lang-switch"><a href="#" class="active">TR</a><a href="#">EN</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Header -->
+  <header class="main-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.png" alt="KTÜ Logosu">
+        <div class="brand-text">
+          <span class="brand-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+          <span class="brand-subtitle">1955 • Araştırma ve Yenilik Merkezi</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Anasayfa</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">Kurumsal</a></div>
+        <div class="nav-item"><a href="course.html" class="nav-link">Akademik</a></div>
+        <div class="nav-item"><a href="blog.html" class="nav-link">Haber & Etkinlik</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link active">İletişim & Ulaşım</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-trigger-btn open-search-modal" title="Site İçi Arama">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Ara...</span>
+          <span class="search-kbd">Ctrl+K</span>
+        </button>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Menüyü Aç/Kapat">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Subpage Hero -->
+  <section class="subpage-hero">
+    <div class="container">
+      <h1 class="subpage-title">İletişim & Kampüs Ulaşımı</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Anasayfa</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Bize Ulaşın ve Kanuni Kampüsü Rehberi</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. İletişim Formu ve Bilgileri -->
+  <main class="page-content-section">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Sol: İnteraktif İletişim Formu -->
+        <div class="contact-form-card">
+          <h2 class="contact-form-title">Üniversitemize Yazın</h2>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem;">
+            Sorularınız, iş birliği talepleriniz veya önerileriniz için ilgili birime doğrudan mesaj iletebilirsiniz.
+          </p>
+
+          <form id="contactForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+              <div>
+                <label class="form-label" for="contactName">Adınız Soyadınız *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="Örn: Ahmet Yılmaz" required>
+              </div>
+              <div>
+                <label class="form-label" for="contactEmail">E-Posta Adresiniz *</label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="ahmet@example.com" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+              <div>
+                <label class="form-label" for="contactPhone">Telefon Numarası</label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="05XX XXX XX XX">
+              </div>
+              <div>
+                <label class="form-label" for="contactDept">Muhatap Birim *</label>
+                <select id="contactDept" class="form-control" required>
+                  <option value="">Lütfen Birim Seçiniz...</option>
+                  <option value="genel">Genel Sekreterlik / Rektörlük</option>
+                  <option value="ogrenci">Öğrenci İşleri Daire Başkanlığı</option>
+                  <option value="kutuphane">Kütüphane ve Dokümantasyon Daire Bşk.</option>
+                  <option value="hastane">Farabi Hastanesi Başhekimliği</option>
+                  <option value="dis">Dış İlişkiler (Erasmus / Uluslararası)</option>
+                  <option value="teknokent">Trabzon Teknokent ve TTO</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactSubject">Mesaj Konusu *</label>
+              <input type="text" id="contactSubject" class="form-control" placeholder="Örn: Lisansüstü başvuru süreci hakkında" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Mesajınız *</label>
+              <textarea id="contactMessage" rows="5" class="form-control" placeholder="Mesajınızı detaylı şekilde buraya yazınız..." required></textarea>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+              <input type="checkbox" id="kvkkCheck" required>
+              <label for="kvkkCheck">KTÜ KVKK Aydınlatma Metnini okudum, kişisel verilerimin işlenmesini kabul ediyorum.</label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="padding: 0.85rem 2rem;">
+              <i class="fa-solid fa-paper-plane"></i> Mesajı Gönder
+            </button>
+          </form>
+        </div>
+
+        <!-- Sağ: Kampüs Bilgileri, Harita ve Dahili Rehber -->
+        <div>
+          <div class="contact-info-card">
+            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary);">
+              Kanuni Kampüsü Bilgileri
+            </h3>
+
+            <div class="info-block">
+              <div class="info-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+              <div>
+                <div class="info-title">Yerleşke Adresi</div>
+                <div class="info-text">Karadeniz Teknik Üniversitesi, Kanuni Kampüsü, Üniversite Mahallesi, 61080 Ortahisar / TRABZON</div>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <div class="info-icon"><i class="fa-solid fa-phone-volume"></i></div>
+              <div>
+                <div class="info-title">Santral & İletişim</div>
+                <div class="info-text">+90 462 377 3000 / Faks: +90 462 325 3185<br>E-Posta: iletisim@ktu.edu.tr</div>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <div class="info-icon"><i class="fa-solid fa-plane-departure"></i></div>
+              <div>
+                <div class="info-title">Ulaşım ve Konum Avantajı</div>
+                <div class="info-text">
+                  Trabzon Uluslararası Havalimanı'na yalnızca <strong>2 km</strong>, Şehirlerarası Otobüs Terminali'ne <strong>3 km</strong> mesafededir. Şehir merkezinden (Meydan) 10 dakikada bir dolmuş ve belediye otobüsü seferleri mevcuttur.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- İnteraktif Harita Çerçevesi (Trabzon Kanuni Kampüsü) -->
+          <div class="map-frame-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12048.887850259468!2d39.77121655!3d40.99307765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40643c3f25c78275%3A0xbcecfcb17c603a11!2sKaradeniz%20Teknik%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <!-- Önemli Dahili Telefon Rehberi -->
+          <div class="contact-info-card" style="margin-top: 2rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-primary);">
+              Önemli Dahili Santral Numaraları
+            </h3>
+            <table class="phone-directory-table">
+              <thead>
+                <tr>
+                  <th>Birim Adı</th>
+                  <th>Dahili No</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Rektörlük Özel Kalem</td>
+                  <td><strong>377 2100</strong></td>
+                </tr>
+                <tr>
+                  <td>Öğrenci İşleri Daire Bşk.</td>
+                  <td><strong>377 3100</strong></td>
+                </tr>
+                <tr>
+                  <td>Farabi Hastanesi Acil Servis</td>
+                  <td><strong>377 5000</strong></td>
+                </tr>
+                <tr>
+                  <td>Kampüs Güvenlik Amirliği (Acil)</td>
+                  <td><strong>377 2222</strong></td>
+                </tr>
+                <tr>
+                  <td>Merkez Kütüphane Danışma</td>
+                  <td><strong>377 2600</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="KTÜ Beyaz Logo">
+          <span>KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+        </div>
+        <p class="footer-brand-desc">
+          1955 yılında kurulan KTÜ, Türkiye'nin ilk kurulan teknik üniversitelerinden biri olarak uluslararası standartlarda eğitim, araştırma ve toplumsal hizmet üretmektedir.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Hızlı Bağlantılar</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="about.html">Kurumsal</a></li>
+          <li><a href="course.html">Fakülteler</a></li>
+          <li><a href="blog.html">Haber & Etkinlik</a></li>
+          <li><a href="contact.html">İletişim & Ulaşım</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">E-Hizmetler</h4>
+        <ul class="footer-nav-list">
+          <li><a href="about.html#campus-facilities">Kütüphane Veritabanı</a></li>
+          <li><a href="contact.html">Farabi E-Randevu</a></li>
+          <li><a href="#">KTÜ E-Posta</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">İletişim</h4>
+        <div class="footer-contact-info">
+          <div class="contact-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Kanuni Kampüsü, 61080 Trabzon / TÜRKİYE</span>
+          </div>
+          <div class="contact-line">
+            <i class="fa-solid fa-phone"></i>
+            <span>+90 462 377 3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>© 2026 Karadeniz Teknik Üniversitesi. Tüm Hakları Saklıdır.</div>
+      <div class="footer-bottom-links"><a href="#">Gizlilik Politikası</a><a href="#">KVKK</a></div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--ktu-blue-accent);"></i> KTÜ Hızlı Arama</h3>
+        <button class="modal-close-btn" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="siteSearchInput" class="form-control" placeholder="Arama yapın...">
+        <div class="search-results-list" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // İletişim Formu Validasyonu ve Gönderimi
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value;
+        const dept = document.getElementById('contactDept').options[document.getElementById('contactDept').selectedIndex].text;
+        
+        alert(`Teşekkür ederiz Sayın ${name}!\nMesajınız "${dept}" birimine başarıyla iletilmiştir.\nTakip numaranız: KTU-${Math.floor(100000 + Math.random() * 900000)}`);
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>

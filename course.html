@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fakülteler ve Bölümler | Karadeniz Teknik Üniversitesi</title>
+  <meta name="description" content="Karadeniz Teknik Üniversitesi akredite lisans ve lisansüstü programları, fakülteleri, bölümleri ve kontenjan bilgileri.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Dosyası -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Bölümler Sayfasına Özel Filtreleme ve Kart Stilleri */
+    .catalog-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 1.25rem 1.75rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--ktu-blue-accent);
+      color: var(--ktu-blue-accent);
+    }
+
+    .filter-btn.active {
+      background: var(--ktu-navy);
+      color: #fff;
+      border-color: var(--ktu-navy);
+    }
+
+    [data-theme="dark"] .filter-btn.active {
+      background: var(--ktu-blue-accent);
+      border-color: var(--ktu-blue-accent);
+    }
+
+    .search-department-input {
+      min-width: 260px;
+      padding: 0.65rem 1.1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+      font-size: 0.88rem;
+    }
+
+    .search-department-input:focus {
+      border-color: var(--ktu-blue-accent);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+    }
+
+    .departments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .dept-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .dept-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--ktu-blue-accent);
+    }
+
+    .dept-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .dept-faculty-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ktu-blue-accent);
+      background: rgba(2, 132, 199, 0.1);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+    }
+
+    .dept-accredit-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .dept-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .dept-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    .dept-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      background: var(--bg-tertiary);
+      padding: 0.85rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .metric-title {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      display: block;
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .btn-detail-modal {
+      width: 100%;
+      text-align: center;
+      background: transparent;
+      border: 1px solid var(--ktu-blue-accent);
+      color: var(--ktu-blue-accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.65rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .btn-detail-modal:hover {
+      background: var(--ktu-blue-accent);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Üst Bilgi Çubuğu
+       ======================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="research-badge">
+          <i class="fa-solid fa-award"></i> Araştırma Üniversitesi
+        </span>
+        <div class="top-bar-links">
+          <a href="contact.html"><i class="fa-solid fa-location-dot"></i> Trabzon, Kanuni Kampüsü</a>
+          <a href="tel:04623773000"><i class="fa-solid fa-phone"></i> +90 462 377 3000</a>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Karanlık Moda Geç">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="lang-switch">
+          <a href="#" class="active">TR</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. Ana Navigasyon (Header)
+       ======================================================================== -->
+  <header class="main-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.png" alt="KTÜ Logosu">
+        <div class="brand-text">
+          <span class="brand-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+          <span class="brand-subtitle">1955 • Araştırma ve Yenilik Merkezi</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Anasayfa</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">Kurumsal</a></div>
+        <div class="nav-item"><a href="course.html" class="nav-link active">Akademik</a></div>
+        <div class="nav-item"><a href="blog.html" class="nav-link">Haber & Etkinlik</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">İletişim & Ulaşım</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-trigger-btn open-search-modal" title="Site İçi Arama">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Ara...</span>
+          <span class="search-kbd">Ctrl+K</span>
+        </button>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Menüyü Aç/Kapat">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. Alt Sayfa Başlığı (Subpage Hero)
+       ======================================================================== -->
+  <section class="subpage-hero">
+    <div class="container">
+      <h1 class="subpage-title">Fakülteler ve Bölümler</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Anasayfa</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Akademik Birimler ve Programlar</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. Bölüm Keşif ve Filtreleme Alanı
+       ======================================================================== -->
+  <main class="page-content-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Program Kataloğu</span>
+        <h2 class="section-title">Geleceğinize Uygun Bölümü Keşfedin</h2>
+        <p class="section-desc">MÜDEK, TEPDAD ve MİAK uluslararası akreditasyonlarına sahip programlarımızla dünya standartlarında mühendislik, tıp ve sosyal bilimler eğitimi.</p>
+      </div>
+
+      <!-- Filtre Çubuğu -->
+      <div class="catalog-filter-bar">
+        <div class="filter-buttons" id="deptFilterButtons">
+          <button class="filter-btn active" data-filter="all">Tüm Programlar</button>
+          <button class="filter-btn" data-filter="engineering">Mühendislik</button>
+          <button class="filter-btn" data-filter="medicine">Tıp & Sağlık</button>
+          <button class="filter-btn" data-filter="marine">Deniz Bilimleri</button>
+          <button class="filter-btn" data-filter="architecture">Mimarlık</button>
+          <button class="filter-btn" data-filter="science">Fen & Yazılım</button>
+          <button class="filter-btn" data-filter="iibf">İİBF</button>
+        </div>
+
+        <div>
+          <input type="text" id="deptSearchInput" class="search-department-input" placeholder="Bölüm ara... (Örn: Bilgisayar, Gemi)">
+        </div>
+      </div>
+
+      <!-- Bölüm Kartları Izgarası -->
+      <div class="departments-grid" id="departmentsGrid">
+        <!-- 1. Bilgisayar Mühendisliği -->
+        <div class="dept-card" data-category="engineering" data-name="bilgisayar mühendisliği yazılım yapay zeka">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Mühendislik Fakültesi</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> MÜDEK Akredite</span>
+            </div>
+            <h3 class="dept-name">Bilgisayar Mühendisliği</h3>
+            <p class="dept-desc">Yapay zeka, otonom sistemler, siber güvenlik, bulut bilişim ve modern yazılım mimarileri üzerine uluslararası müfredat.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">110</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">%30 İng</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Bilgisayar Mühendisliği', 'Mühendislik Fakültesi', '110 Öğrenci (SAY)', 'MÜDEK Akreditasyonu, 6 Yüksek Başarımlı Laboratuvar, TEKNOFEST Birincilikleri, %30 İngilizce Eğitim.', 'Prof. Dr. Hamdi Tolga KAHRAMAN')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Maden Mühendisliği -->
+        <div class="dept-card" data-category="engineering" data-name="maden mühendisliği yeraltı jeoloji dünya 14">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Mühendislik Fakültesi</span>
+              <span class="dept-accredit-tag" style="color: #d97706; background: rgba(217, 119, 6, 0.1);"><i class="fa-solid fa-trophy"></i> Dünya 14.'sü</span>
+            </div>
+            <h3 class="dept-name">Maden Mühendisliği</h3>
+            <p class="dept-desc">ScholarGPS 2026 küresel değerlendirmesinde Türkiye'de 1., dünyada 14. sırada yer alan ödüllü akademik kadro.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">40</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">İsteğe Bağlı</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Maden Mühendisliği', 'Mühendislik Fakültesi', '40 Öğrenci (SAY)', 'Dünya genelinde 14. sıra, zengin cevher hazırlama tesisleri ve uluslararası madencilik bursları.', 'Prof. Dr. Kerim AYDINER')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Tıp Fakültesi -->
+        <div class="dept-card" data-category="medicine" data-name="tıp fakültesi hekim cerrahi farabi hastanesi">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Tıp Fakültesi</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> TEPDAD Akredite</span>
+            </div>
+            <h3 class="dept-name">Tıp Programı (Türkçe)</h3>
+            <p class="dept-desc">Farabi Eğitim ve Araştırma Hastanesi'nde kapsamlı klinik staj olanakları ve modern simülasyon merkezleri.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">250</span></div>
+              <div><span class="metric-title">Süre</span><span class="metric-value">6 Yıl</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Tıp Fakültesi (Lisans)', 'Tıp Fakültesi', '250 Öğrenci (SAY)', 'TEPDAD Akreditasyonu, Farabi Üniversite Hastanesi, TUS Başarılarında Türkiye İlk 10.', 'Prof. Dr. Neşe KAKLIKKAYA')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Gemi İnşaatı ve Gemi Makineleri -->
+        <div class="dept-card" data-category="marine" data-name="gemi inşaatı deniz mühendisliği sürmene tersane">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Sürmene Deniz Bilimleri</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> MÜDEK Akredite</span>
+            </div>
+            <h3 class="dept-name">Gemi İnşaatı ve Makineleri</h3>
+            <p class="dept-desc">Karadeniz kıyısındaki özel yerleşkede modern çekek yeri, simülatörler ve araştırma gemisiyle denizcilik eğitimi.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">65</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">%30 İng</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Gemi İnşaatı ve Gemi Makineleri Mühendisliği', 'Sürmene Deniz Bilimleri Fakültesi', '65 Öğrenci (SAY)', 'MÜDEK Akreditasyonu, Araştırma Gemisi KTÜ DENİZ-1, Tersane Staj Garantisi.', 'Prof. Dr. Ali Muzaffer FEYZİOĞLU')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Mimarlık -->
+        <div class="dept-card" data-category="architecture" data-name="mimarlık tasarım yapı restorasyon kanuni">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Mimarlık Fakültesi</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> MİAK Akredite</span>
+            </div>
+            <h3 class="dept-name">Mimarlık Bölümü</h3>
+            <p class="dept-desc">Tarihi Trabzon mimari dokusundan ilham alan stüdyolar, parametrik tasarım ve sürdürülebilir yapı teknolojileri.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">90</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">Türkçe</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Mimarlık Bölümü', 'Mimarlık Fakültesi', '90 Öğrenci (SAY)', 'MİAK Akreditasyonu, Ulusal Tasarım Yarışmalarında Dereceler, Geniş Çizim Atölyeleri.', 'Prof. Dr. Cenap SANCAR')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Yazılım Geliştirme -->
+        <div class="dept-card" data-category="science" data-name="yazılım geliştirme fen fakültesi kodlama web yapay zeka">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Fen Fakültesi</span>
+              <span class="dept-accredit-tag" style="color: #0284c7; background: rgba(2, 132, 199, 0.1);"><i class="fa-solid fa-bolt"></i> Yeni Bölüm</span>
+            </div>
+            <h3 class="dept-name">Yazılım Geliştirme</h3>
+            <p class="dept-desc">Sektörle entegre müfredat: Mobil geliştirme, büyük veri, bulut mimarileri ve modern web teknolojileri.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">60</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">Zorunlu</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Yazılım Geliştirme Bölümü', 'Fen Fakültesi', '60 Öğrenci (SAY)', 'Yeni nesil bilgisayar laboratuvarları, Trabzon Teknokent staj imkanları, 1 Yıl Zorunlu İngilizce Hazırlık.', 'Doç. Dr. Selçuk GÖKTAŞ')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 7. Yönetim Bilişim Sistemleri (YBS) -->
+        <div class="dept-card" data-category="iibf" data-name="yönetim bilişim sistemleri ybs işletme bilişim veri">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">İİBF</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> Popüler Tercih</span>
+            </div>
+            <h3 class="dept-name">Yönetim Bilişim Sistemleri</h3>
+            <p class="dept-desc">İşletme yönetimi ile bilgi teknolojilerini harmanlayan, dijital dönüşüm liderleri ve iş analistleri yetiştiren program.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">EA</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">80</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">İsteğe Bağlı</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Yönetim Bilişim Sistemleri', 'İktisadi ve İdari Bilimler Fakültesi', '80 Öğrenci (EA)', 'Veri Tabanı Yönetimi, ERP Sistemleri, Dijital Pazarlama ve Girişimcilik.', 'Prof. Dr. Atila DOĞAN')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+
+        <!-- 8. Elektrik-Elektronik Mühendisliği -->
+        <div class="dept-card" data-category="engineering" data-name="elektrik elektronik mühendisliği haberleşme robotik">
+          <div>
+            <div class="dept-badge-row">
+              <span class="dept-faculty-tag">Mühendislik Fakültesi</span>
+              <span class="dept-accredit-tag"><i class="fa-solid fa-check"></i> MÜDEK Akredite</span>
+            </div>
+            <h3 class="dept-name">Elektrik-Elektronik Müh.</h3>
+            <p class="dept-desc">Haberleşme, mikroelektronik, yenilenebilir enerji ve kontrol sistemleri alanında köklü araştırma laboratuvarları.</p>
+          </div>
+          <div>
+            <div class="dept-metrics">
+              <div><span class="metric-title">Puan Türü</span><span class="metric-value">SAY</span></div>
+              <div><span class="metric-title">Kontenjan</span><span class="metric-value">100</span></div>
+              <div><span class="metric-title">Hazırlık</span><span class="metric-value">%30 İng</span></div>
+            </div>
+            <button class="btn-detail-modal" onclick="showDeptDetails('Elektrik-Elektronik Mühendisliği', 'Mühendislik Fakültesi', '100 Öğrenci (SAY)', 'MÜDEK Akreditasyonu, Yüksek Gerilim ve Telekomünikasyon Laboratuvarı, ASELSAN/ROKETSAN Kariyer Olanakları.', 'Prof. Dr. İsmail H. KAVURUCU')">
+              <i class="fa-solid fa-circle-info"></i> Bölüm Detaylarını Gör
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       Bölüm Detay Modalı
+       ======================================================================== -->
+  <div class="modal-backdrop" id="deptModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalDeptName">Bölüm Detayı</h3>
+        <button class="modal-close-btn" onclick="closeDeptModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 1rem;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--ktu-blue-accent);" id="modalFaculty">Fakülte</span>
+        </div>
+        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;" id="modalFeatures">
+          Özellikler
+        </p>
+        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-md); font-size: 0.88rem; margin-bottom: 1.25rem;">
+          <div style="margin-bottom: 0.4rem;"><strong>Kontenjan & Tür:</strong> <span id="modalCapacity">-</span></div>
+          <div><strong>Bölüm Başkanı:</strong> <span id="modalHead">-</span></div>
+        </div>
+        <button class="btn-primary btn-block" onclick="alert('KTÜ Ders Bilgi Paketi ve Müfredat sistemine yönlendiriliyorsunuz.')">
+          <i class="fa-solid fa-graduation-cap"></i> Ders Bilgi Paketini (AKTS) İncele
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="KTÜ Beyaz Logo">
+          <span>KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+        </div>
+        <p class="footer-brand-desc">
+          1955 yılında kurulan KTÜ, Türkiye'nin ilk kurulan teknik üniversitelerinden biri olarak uluslararası standartlarda eğitim, araştırma ve toplumsal hizmet üretmektedir.
+        </p>
+        <div class="footer-social-links">
+          <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Hızlı Bağlantılar</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="about.html">Kurumsal</a></li>
+          <li><a href="course.html">Fakülte ve Bölümler</a></li>
+          <li><a href="blog.html">Haber & Etkinlik</a></li>
+          <li><a href="contact.html">İletişim & Ulaşım</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">E-Hizmetler</h4>
+        <ul class="footer-nav-list">
+          <li><a href="about.html#campus-facilities">Kütüphane Veritabanı</a></li>
+          <li><a href="contact.html">Farabi E-Randevu</a></li>
+          <li><a href="#">KTÜ E-Posta</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">İletişim</h4>
+        <div class="footer-contact-info">
+          <div class="contact-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Kanuni Kampüsü, 61080 Trabzon / TÜRKİYE</span>
+          </div>
+          <div class="contact-line">
+            <i class="fa-solid fa-phone"></i>
+            <span>+90 462 377 3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>© 2026 Karadeniz Teknik Üniversitesi. Tüm Hakları Saklıdır.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">KVKK</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--ktu-blue-accent);"></i> KTÜ Hızlı Arama</h3>
+        <button class="modal-close-btn" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="siteSearchInput" class="form-control" placeholder="Arama yapın... (Örn: Yazılım, Tıp)">
+        <div class="search-results-list" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Bölüm Filtreleme ve Arama Mantığı
+    const filterBtns = document.querySelectorAll('#deptFilterButtons .filter-btn');
+    const deptCards = document.querySelectorAll('.dept-card');
+    const deptSearchInput = document.getElementById('deptSearchInput');
+
+    // URL parametresine göre varsayılan filtre uygulama (?filter=engineering)
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam) {
+      const matchBtn = Array.from(filterBtns).find(b => b.getAttribute('data-filter') === filterParam);
+      if (matchBtn) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        matchBtn.classList.add('active');
+        applyFilter(filterParam);
+      }
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filterVal = btn.getAttribute('data-filter');
+        applyFilter(filterVal);
+      });
+    });
+
+    if (deptSearchInput) {
+      deptSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        deptCards.forEach(card => {
+          const cardText = card.getAttribute('data-name').toLowerCase();
+          if (cardText.includes(query)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    function applyFilter(filter) {
+      deptCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Bölüm Detay Modalı
+    function showDeptDetails(name, faculty, capacity, features, head) {
+      document.getElementById('modalDeptName').innerText = name;
+      document.getElementById('modalFaculty').innerText = faculty;
+      document.getElementById('modalFeatures').innerText = features;
+      document.getElementById('modalCapacity').innerText = capacity;
+      document.getElementById('modalHead').innerText = head;
+
+      const modal = document.getElementById('deptModal');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeptModal() {
+      const modal = document.getElementById('deptModal');
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('deptModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('deptModal')) closeDeptModal();
+    });
+  </script>
+</body>
+</html>

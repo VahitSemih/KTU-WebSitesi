@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haberler ve Etkinlikler | Karadeniz Teknik Üniversitesi</title>
+  <meta name="description" content="Karadeniz Teknik Üniversitesi'nden en güncel haberler, TEKNOFEST başarıları, TÜBİTAK projeleri ve akademik etkinlik takvimi.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Dosyası -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Blog ve Haber Sayfasına Özel İki Sütunlu Düzen */
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 3rem;
+    }
+
+    .main-article {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .main-article-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+
+    .main-article-body {
+      padding: 2.5rem;
+    }
+
+    .article-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .article-badge {
+      background: rgba(2, 132, 199, 0.12);
+      color: var(--ktu-blue-accent);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+    }
+
+    .article-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .article-headline {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+
+    .article-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .article-content p {
+      margin-bottom: 1.25rem;
+    }
+
+    .article-quote {
+      border-left: 4px solid var(--ktu-blue-accent);
+      padding: 1rem 1.5rem;
+      background: var(--bg-tertiary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Yorum Alanı */
+    .comment-section-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .comment-item {
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .comment-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--ktu-navy), var(--ktu-blue-accent));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .comment-user {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .comment-time {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+    }
+
+    .comment-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    /* Sağ Kenar Çubuğu (Sidebar) */
+    .sidebar-widget {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .widget-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .widget-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 3px;
+      background: var(--ktu-blue-accent);
+      border-radius: var(--radius-full);
+    }
+
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .category-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: var(--transition);
+      background: var(--bg-tertiary);
+    }
+
+    .category-item:hover {
+      background: var(--ktu-blue-accent);
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    .category-count {
+      font-size: 0.78rem;
+      background: rgba(0, 0, 0, 0.08);
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+    }
+
+    .category-item:hover .category-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+      .blog-layout {
+        grid-template-columns: 1fr;
+      }
+      .main-article-img {
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Üst Bilgi Çubuğu -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="research-badge"><i class="fa-solid fa-award"></i> Araştırma Üniversitesi</span>
+        <div class="top-bar-links">
+          <a href="contact.html"><i class="fa-solid fa-location-dot"></i> Trabzon, Kanuni Kampüsü</a>
+          <a href="tel:04623773000"><i class="fa-solid fa-phone"></i> +90 462 377 3000</a>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Karanlık Moda Geç"><i class="fa-solid fa-moon"></i></button>
+        <div class="lang-switch"><a href="#" class="active">TR</a><a href="#">EN</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Header -->
+  <header class="main-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.png" alt="KTÜ Logosu">
+        <div class="brand-text">
+          <span class="brand-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+          <span class="brand-subtitle">1955 • Araştırma ve Yenilik Merkezi</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Anasayfa</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">Kurumsal</a></div>
+        <div class="nav-item"><a href="course.html" class="nav-link">Akademik</a></div>
+        <div class="nav-item"><a href="blog.html" class="nav-link active">Haber & Etkinlik</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">İletişim & Ulaşım</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-trigger-btn open-search-modal" title="Site İçi Arama">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Ara...</span>
+          <span class="search-kbd">Ctrl+K</span>
+        </button>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Menüyü Aç/Kapat">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Subpage Hero -->
+  <section class="subpage-hero">
+    <div class="container">
+      <h1 class="subpage-title">Haberler, Etkinlikler & Başarılar</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Anasayfa</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Kampüs Haberleri ve Bilim Bülteni</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Blog İçerik Düzeni (İki Sütunlu) -->
+  <main class="page-content-section">
+    <div class="container">
+      <div class="blog-layout">
+        <!-- Sol Ana Yazı ve Yorum Alanı -->
+        <div>
+          <!-- Öne Çıkan Ana Haber -->
+          <article class="main-article">
+            <img src="images/maden_muhendisligi.jpg" alt="TEKNOFEST Şampiyonu Creatiny Takımı" class="main-article-img">
+            <div class="main-article-body">
+              <div class="article-badge-row">
+                <span class="article-badge">Milli Teknoloji Hamlesi</span>
+                <span class="article-date"><i class="fa-regular fa-calendar"></i> 12 Ekim 2026</span>
+                <span class="article-date"><i class="fa-regular fa-eye"></i> 3.420 Okunma</span>
+              </div>
+              <h2 class="article-headline">TEKNOFEST 2026'da KTÜ Fırtınası: Öğrencilerimiz Üst Üste 3. Kez Türkiye Şampiyonu!</h2>
+              <div class="article-content">
+                <p>
+                  Karadeniz Teknik Üniversitesi öğrencilerinden oluşan <strong>KTÜ Fırtına Creatiny Takımı</strong>, TEKNOFEST Hyperloop Geliştirme Yarışması'nda geliştirdikleri yeni nesil manyetik kaldırma ve tahrik sistemli pod aracı ile bir kez daha birincilik kürsüsüne çıktı.
+                </p>
+                <div class="article-quote">
+                  "Trabzon Teknokent ve Üniversitemizin sunduğu gelişmiş prototipleme atölyeleri sayesinde tünelde 180 km/s hız limitini sıfır hata ile aşarak Türkiye rekoru kırdık." — Takım Kaptanı
+                </div>
+                <p>
+                  Yarışma finalinde TÜBİTAK RUTE Gebze Yerleşkesi'ndeki vakumlu tünelde gerçekleştirilen zorlu testlerde KTÜ ekibi; frenleme mesafesi, telemetri haberleşmesi ve otonom navigasyon kriterlerinin tamamından tam puan aldı.
+                </p>
+                <p>
+                  Rektörümüz Prof. Dr. Hamdullah ÇUVALCI, şampiyon takımı tebrik ederek: <em>"Öğrencilerimizin yerli ve milli yüksek hızlı ulaşım teknolojilerine sunduğu bu paha biçilmez katkı, üniversitemizin araştırma vizyonunun en somut göstergesidir."</em> ifadelerini kullandı.
+                </p>
+              </div>
+
+              <!-- Paylaş Butonları -->
+              <div style="display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary);">Haberi Paylaş:</span>
+                <a href="#" class="social-btn" style="background: var(--bg-tertiary); color: var(--text-primary);"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social-btn" style="background: var(--bg-tertiary); color: var(--text-primary);"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn" style="background: var(--bg-tertiary); color: var(--text-primary);"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="social-btn" style="background: var(--bg-tertiary); color: var(--text-primary);"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Yorum Bölümü -->
+          <div class="comment-section-box">
+            <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary);">
+              Görüş ve Yorumlar (<span id="commentCount">2</span>)
+            </h3>
+
+            <!-- Mevcut Yorumlar -->
+            <div class="comment-list" id="commentList">
+              <div class="comment-item">
+                <div class="comment-avatar">BK</div>
+                <div>
+                  <div>
+                    <span class="comment-user">Burak Korkmaz</span>
+                    <span class="comment-time">13 Ekim 2026, 14:20</span>
+                  </div>
+                  <p class="comment-text">KTÜ öğrencisi olarak Creatiny takımımızın bu başarısıyla gurur duyuyoruz! Tebrikler arkadaşlar.</p>
+                </div>
+              </div>
+
+              <div class="comment-item">
+                <div class="comment-avatar">AY</div>
+                <div>
+                  <div>
+                    <span class="comment-user">Dr. Ahmet Yılmaz</span>
+                    <span class="comment-time">14 Ekim 2026, 09:45</span>
+                  </div>
+                  <p class="comment-text">Mühendislik fakültemizin laboratuvar yatırımlarının karşılığını böyle ödüllerle görmek muazzam.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Yeni Yorum Formu -->
+            <form id="commentForm">
+              <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">Yorum Bırakın</h4>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <input type="text" id="commentName" class="form-control" placeholder="Adınız Soyadınız" required>
+                <input type="email" id="commentEmail" class="form-control" placeholder="E-Posta Adresiniz" required>
+              </div>
+              <div class="form-group">
+                <textarea id="commentMsg" rows="4" class="form-control" placeholder="Düşüncelerinizi buraya yazın..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Yorumu Yayınla
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sağ Kenar Çubuğu (Sidebar) -->
+        <aside>
+          <!-- Kategoriler -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Haber Kategorileri</h3>
+            <div class="category-list">
+              <a href="#" class="category-item"><span><i class="fa-solid fa-microchip" style="margin-right: 0.5rem;"></i> Bilim ve Teknoloji</span> <span class="category-count">42</span></a>
+              <a href="#" class="category-item"><span><i class="fa-solid fa-trophy" style="margin-right: 0.5rem;"></i> TEKNOFEST & Ödüller</span> <span class="category-count">18</span></a>
+              <a href="#" class="category-item"><span><i class="fa-solid fa-bullhorn" style="margin-right: 0.5rem;"></i> Akademik Duyurular</span> <span class="category-count">35</span></a>
+              <a href="#" class="category-item"><span><i class="fa-solid fa-heart-pulse" style="margin-right: 0.5rem;"></i> Tıp ve Sağlık (Farabi)</span> <span class="category-count">29</span></a>
+              <a href="#" class="category-item"><span><i class="fa-solid fa-masks-theater" style="margin-right: 0.5rem;"></i> Kültür, Sanat & Spor</span> <span class="category-count">14</span></a>
+            </div>
+          </div>
+
+          <!-- Yaklaşan Etkinlikler -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Yaklaşan Etkinlikler</h3>
+            <div class="events-list" style="gap: 0.85rem;">
+              <div class="event-item" style="padding: 0.85rem 1rem;">
+                <div class="event-date-box" style="padding: 0.4rem 0.8rem; min-width: 60px;">
+                  <div class="event-day" style="font-size: 1.3rem;">27</div>
+                  <div class="event-month" style="font-size: 0.7rem;">Ekim</div>
+                </div>
+                <div class="event-details">
+                  <h4 style="font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem;">Karadeniz Deniz Ticareti</h4>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> 11:00 • Radyo/TV</span>
+                </div>
+              </div>
+
+              <div class="event-item" style="padding: 0.85rem 1rem;">
+                <div class="event-date-box" style="padding: 0.4rem 0.8rem; min-width: 60px;">
+                  <div class="event-day" style="font-size: 1.3rem;">04</div>
+                  <div class="event-month" style="font-size: 0.7rem;">Kasım</div>
+                </div>
+                <div class="event-details">
+                  <h4 style="font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem;">Tribosurf'26 Konferansı</h4>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="fa-solid fa-location-dot"></i> AKM Kongre</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duyuru Bülteni / Abonelik -->
+          <div class="sidebar-widget" style="background: linear-gradient(135deg, var(--ktu-navy), var(--ktu-blue-accent)); color: #fff;">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: #fff;">E-Bülten Aboneliği</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1.25rem;">KTÜ'deki bilimsel gelişmeler ve etkinlik takvimi her hafta e-posta kutunuzda.</p>
+            <form onsubmit="event.preventDefault(); alert('E-Bülten aboneliğiniz başarıyla kaydedildi!');">
+              <input type="email" placeholder="E-posta adresiniz..." class="form-control" style="margin-bottom: 0.75rem; background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);" required>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; background: #f59e0b; color: #000; box-shadow: none;">
+                Abone Ol
+              </button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="KTÜ Beyaz Logo">
+          <span>KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+        </div>
+        <p class="footer-brand-desc">
+          1955 yılında kurulan KTÜ, Türkiye'nin ilk kurulan teknik üniversitelerinden biri olarak uluslararası standartlarda eğitim, araştırma ve toplumsal hizmet üretmektedir.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Hızlı Bağlantılar</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="about.html">Kurumsal</a></li>
+          <li><a href="course.html">Fakülteler</a></li>
+          <li><a href="blog.html">Haber & Etkinlik</a></li>
+          <li><a href="contact.html">İletişim & Ulaşım</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">E-Hizmetler</h4>
+        <ul class="footer-nav-list">
+          <li><a href="about.html#campus-facilities">Kütüphane Veritabanı</a></li>
+          <li><a href="contact.html">Farabi E-Randevu</a></li>
+          <li><a href="#">KTÜ E-Posta</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">İletişim</h4>
+        <div class="footer-contact-info">
+          <div class="contact-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Kanuni Kampüsü, 61080 Trabzon / TÜRKİYE</span>
+          </div>
+          <div class="contact-line">
+            <i class="fa-solid fa-phone"></i>
+            <span>+90 462 377 3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>© 2026 Karadeniz Teknik Üniversitesi. Tüm Hakları Saklıdır.</div>
+      <div class="footer-bottom-links"><a href="#">Gizlilik Politikası</a><a href="#">KVKK</a></div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--ktu-blue-accent);"></i> KTÜ Hızlı Arama</h3>
+        <button class="modal-close-btn" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="siteSearchInput" class="form-control" placeholder="Arama yapın...">
+        <div class="search-results-list" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Yorum Formu Etkileşimi
+    const commentForm = document.getElementById('commentForm');
+    const commentList = document.getElementById('commentList');
+    const commentCount = document.getElementById('commentCount');
+    let currentCount = 2;
+
+    if (commentForm && commentList) {
+      commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('commentName').value.trim();
+        const msg = document.getElementById('commentMsg').value.trim();
+
+        if (!name || !msg) return;
+
+        // Baş harfleri al
+        const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+        const newCommentHtml = `
+          <div class="comment-item" style="animation: fadeIn 0.5s ease;">
+            <div class="comment-avatar" style="background: var(--ktu-gold);">${initials}</div>
+            <div>
+              <div>
+                <span class="comment-user">${name}</span>
+                <span class="comment-time">Az önce</span>
+              </div>
+              <p class="comment-text">${msg}</p>
+            </div>
+          </div>
+        `;
+
+        commentList.insertAdjacentHTML('beforeend', newCommentHtml);
+        currentCount++;
+        commentCount.innerText = currentCount;
+        commentForm.reset();
+        alert('Yorumunuz başarıyla iletildi!');
+      });
+    }
+  </script>
+</body>
+</html>

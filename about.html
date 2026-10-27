@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurumsal ve Tarihçe | Karadeniz Teknik Üniversitesi</title>
+  <meta name="description" content="1955 yılında kurulan Karadeniz Teknik Üniversitesi'nin köklü tarihçesi, misyonu, vizyonu ve modern Kanuni Kampüsü imkanları.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.5.1 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Dosyası -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Hakkımızda Sayfasına Özel Zaman Çizelgesi (Timeline) ve Kart Stilleri */
+    .timeline-container {
+      position: relative;
+      max-width: 860px;
+      margin: 3rem auto;
+      padding: 1rem 0;
+    }
+
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--ktu-navy), var(--ktu-blue-accent));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      border-radius: var(--radius-full);
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: var(--bg-secondary);
+      border: 4px solid var(--ktu-blue-accent);
+      top: 22px;
+      border-radius: 50%;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .timeline-item.right::after {
+      left: -10px;
+    }
+
+    .timeline-item:hover::after {
+      background-color: var(--ktu-gold);
+      transform: scale(1.2);
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .timeline-item:hover .timeline-content {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--ktu-blue-accent);
+      transform: translateY(-3px);
+    }
+
+    .timeline-year {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--ktu-blue-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Misyon & Vizyon Kartları */
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3.5rem 0;
+    }
+
+    .mv-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--ktu-navy), var(--ktu-blue-accent));
+    }
+
+    .mv-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--ktu-blue-accent);
+    }
+
+    .mv-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--ktu-blue-accent);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mv-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .mv-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container::after {
+        left: 31px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        text-align: left !important;
+      }
+      .timeline-item.right {
+        left: 0%;
+      }
+      .timeline-item::after {
+        left: 21px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Üst Bilgi Çubuğu
+       ======================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="research-badge">
+          <i class="fa-solid fa-award"></i> Araştırma Üniversitesi
+        </span>
+        <div class="top-bar-links">
+          <a href="contact.html"><i class="fa-solid fa-location-dot"></i> Trabzon, Kanuni Kampüsü</a>
+          <a href="tel:04623773000"><i class="fa-solid fa-phone"></i> +90 462 377 3000</a>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Karanlık Moda Geç">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="lang-switch">
+          <a href="#" class="active">TR</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. Ana Navigasyon (Header)
+       ======================================================================== -->
+  <header class="main-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.png" alt="KTÜ Logosu">
+        <div class="brand-text">
+          <span class="brand-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+          <span class="brand-subtitle">1955 • Araştırma ve Yenilik Merkezi</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Anasayfa</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link active">Kurumsal</a></div>
+        <div class="nav-item"><a href="course.html" class="nav-link">Akademik</a></div>
+        <div class="nav-item"><a href="blog.html" class="nav-link">Haber & Etkinlik</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">İletişim & Ulaşım</a></div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-trigger-btn open-search-modal" title="Site İçi Arama">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Ara...</span>
+          <span class="search-kbd">Ctrl+K</span>
+        </button>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Menüyü Aç/Kapat">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. Alt Sayfa Başlığı (Subpage Hero)
+       ======================================================================== -->
+  <section class="subpage-hero">
+    <div class="container">
+      <h1 class="subpage-title">Kurumsal & Tarihçe</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Anasayfa</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Üniversitemiz ve 1955'ten Bugüne Yolculuğumuz</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. Misyon, Vizyon ve Değerler
+       ======================================================================== -->
+  <main class="page-content-section" id="mission-vision">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Stratejik Vizyon</span>
+        <h2 class="section-title">Bilimle Büyüyen, Geleceğe Yön Veren Üniversite</h2>
+        <p class="section-desc">69 yıllık köklü akademik kültürümüzle evrensel bilgi üretimi ve toplum odaklı yenilikçilik.</p>
+      </div>
+
+      <div class="mission-vision-grid">
+        <!-- Misyon -->
+        <div class="mv-card">
+          <div class="mv-icon"><i class="fa-solid fa-compass"></i></div>
+          <h3 class="mv-title">Misyonumuz</h3>
+          <p class="mv-text">
+            Bilim ve teknolojide evrensel düzeyde araştırma yapmak, uluslararası yetkinliğe sahip araştırmacı ve girişimci bireyler yetiştirmek; bölge ve ülke kalkınmasına katma değer sağlayacak yenilikçi çözümler üretmektir.
+          </p>
+        </div>
+
+        <!-- Vizyon -->
+        <div class="mv-card">
+          <div class="mv-icon"><i class="fa-solid fa-eye"></i></div>
+          <h3 class="mv-title">Vizyonumuz</h3>
+          <p class="mv-text">
+            Öncü araştırmaları, nitelikli eğitim programları ve sürdürülebilir yeşil kampüsü ile küresel ölçekte tanınan ve tercih edilen lider bir araştırma üniversitesi olmak.
+          </p>
+        </div>
+
+        <!-- Temel Değerler -->
+        <div class="mv-card">
+          <div class="mv-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3 class="mv-title">Temel Değerlerimiz</h3>
+          <p class="mv-text">
+            Akademik özgürlük, liyakat ve adalet, yenilikçilik ve girişimcilik, etik değerlere bağlılık, çevreye ve insana saygı ile Karadeniz'in üretken ve dinamik ruhu.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         5. Tarihçe Zaman Çizelgesi (Timeline)
+         ======================================================================== -->
+    <div class="container" style="margin-top: 4rem;">
+      <div class="section-header">
+        <span class="section-subtitle">Köklü Geçmiş</span>
+        <h2 class="section-title">KTÜ'nün Tarihsel Dönüm Noktaları</h2>
+        <p class="section-desc">Ankara ve İstanbul dışında kurulan Türkiye'nin ilk, toplamda ise 4. teknik üniversitesi.</p>
+      </div>
+
+      <div class="timeline-container">
+        <!-- 1955 -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <div class="timeline-year">1955</div>
+            <h3 class="timeline-title">Üniversitenin Kuruluş Kanunu</h3>
+            <p class="timeline-desc">
+              20 Mayıs 1955 tarihli ve 6594 sayılı kanunla Trabzon Milletvekili Mustafa Reşit Tarakçıoğlu ve 28 arkadaşının teklifiyle Karadeniz Teknik Üniversitesi kuruldu.
+            </p>
+          </div>
+        </div>
+
+        <!-- 1963 -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <div class="timeline-year">1963</div>
+            <h3 class="timeline-title">Kanuni Kampüsü ve İlk Öğrenciler</h3>
+            <p class="timeline-desc">
+              Cumhurbaşkanı Cemal Gürsel'in katılımıyla İnşaat-Mimarlık, Makine-Elektrik, Jeoloji ve Orman Fakülteleri ile bugünkü modern Kanuni Kampüsü'nde eğitim meşalesi yakıldı.
+            </p>
+          </div>
+        </div>
+
+        <!-- 1982 -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <div class="timeline-year">1982</div>
+            <h3 class="timeline-title">Bölgesel Büyüme & Tıp Fakültesi</h3>
+            <p class="timeline-desc">
+              Fatih Eğitim, Tıp Fakültesi ve Doğu Karadeniz'in en büyük sağlık üssü olan Farabi Hastanesi kurularak üniversite çok disiplinli bir metropol yapısına ulaştı.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <div class="timeline-year">2021</div>
+            <h3 class="timeline-title">YÖK Araştırma Üniversitesi Beratı</h3>
+            <p class="timeline-desc">
+              Yükseköğretim Kurulu (YÖK) tarafından yürütülen "Araştırma Odaklı Misyon Farklılaşması Programı" kapsamında KTÜ, Türkiye'nin sayılı Araştırma Üniversiteleri arasına girdi.
+            </p>
+          </div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <div class="timeline-year">2026</div>
+            <h3 class="timeline-title">Küresel Başarılar & TEKNOFEST</h3>
+            <p class="timeline-desc">
+              Maden Mühendisliği alanında dünyada 14. sıra, TEKNOFEST Hyperloop yarışmasında 3. kez üst üste Türkiye şampiyonluğu ve uluslararası patent tescilleri ile geleceğe yürüyor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         6. Kampüs Olanakları Vitrini
+         ======================================================================== -->
+    <div class="container" id="campus-facilities" style="margin-top: 5rem;">
+      <div class="section-header">
+        <span class="section-subtitle">Kampüs Yaşamı</span>
+        <h2 class="section-title">Kanuni Kampüsü Sosyal & Bilimsel İmkânları</h2>
+        <p class="section-desc">Eğitimin yanında kültür, sanat, spor ve sosyal hayatın buluşma noktası.</p>
+      </div>
+
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="news-thumb">
+            <img src="images/kutuphane.jpg" alt="Faik Ahmet Barutçu Kütüphanesi">
+          </div>
+          <div class="news-body">
+            <h3 class="news-title">Faik Ahmet Barutçu Kütüphanesi</h3>
+            <p class="news-excerpt">
+              7/24 açık modern çalışma salonları, 1.5 milyon basılı ve dijital kaynak, sessiz bireysel kabinler ve zengin bilimsel veritabanı erişimi.
+            </p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-thumb">
+            <img src="images/kampus.jpg" alt="Prof. Dr. Osman Turan Kongre Merkezi">
+          </div>
+          <div class="news-body">
+            <h3 class="news-title">Kültür ve Kongre Merkezleri</h3>
+            <p class="news-excerpt">
+              Prof. Dr. Osman Turan ve AKM salonlarında uluslararası sempozyumlar, tiyatrolar, konserler ve öğrenci kulübü etkinlikleri.
+            </p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-thumb">
+            <img src="images/maden_muhendisligi.jpg" alt="Olimpik Tesisler ve Teknokent">
+          </div>
+          <div class="news-body">
+            <h3 class="news-title">Olimpik Spor Kompleksi & Teknokent</h3>
+            <p class="news-excerpt">
+              Yarı olimpik yüzme havuzu, kapalı spor salonları, tenis kortları ve girişimci gençlerin Ar-Ge projelerini hayata geçirdiği Trabzon Teknokent.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         7. Rektörün Mesajı
+         ======================================================================== -->
+    <div class="container" id="rector-message" style="margin-top: 5rem;">
+      <div class="rector-card">
+        <div class="rector-avatar-col">
+          <img src="images/logo.png" alt="Rektörlük Portresi" class="rector-avatar" style="background: #fff; padding: 10px;">
+          <h4 class="rector-name">Prof. Dr. Hamdullah ÇUVALCI</h4>
+          <span class="rector-title">Karadeniz Teknik Üniversitesi Rektörü</span>
+        </div>
+        <div class="rector-quote-col">
+          <i class="fa-solid fa-quote-left"></i>
+          <p class="rector-quote-text">
+            "Sevgili Gençler ve Değerli Araştırmacılar,<br><br>
+            Karadeniz Teknik Üniversitesi, kurulduğu günden bu yana yalnızca bir bilgi aktarım kurumu olmamış; bilimi, teknolojiyi ve kültürü harmanlayan bir yaşam biçimi sunmuştur. Ülkemizin kalkınma hedefleri doğrultusunda nitelikli insan kaynağı yetiştirmeye, milli teknoloji hamlesine katkı sağlamaya ve Karadeniz'in mavi ufuklarından tüm dünyaya bilim ihraç etmeye kararlılıkla devam ediyoruz. Kapılarımız, geleceği inşa etmek isteyen tüm vizyoner beyinlere sonuna kadar açıktır."
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.png" alt="KTÜ Beyaz Logo">
+          <span>KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+        </div>
+        <p class="footer-brand-desc">
+          1955 yılında kurulan KTÜ, Türkiye'nin ilk kurulan teknik üniversitelerinden biri olarak uluslararası standartlarda eğitim, araştırma ve toplumsal hizmet üretmektedir.
+        </p>
+      </div>
+      <div>
+        <h4 class="footer-col-title">Hızlı Bağlantılar</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="about.html">Kurumsal</a></li>
+          <li><a href="course.html">Fakülteler</a></li>
+          <li><a href="blog.html">Haber & Etkinlik</a></li>
+          <li><a href="contact.html">İletişim & Ulaşım</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">E-Hizmetler</h4>
+        <ul class="footer-nav-list">
+          <li><a href="#campus-facilities">Kütüphane Veritabanı</a></li>
+          <li><a href="contact.html">Farabi E-Randevu</a></li>
+          <li><a href="#">KTÜ E-Posta Servisi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-col-title">İletişim</h4>
+        <div class="footer-contact-info">
+          <div class="contact-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Kanuni Kampüsü, 61080 Trabzon / TÜRKİYE</span>
+          </div>
+          <div class="contact-line">
+            <i class="fa-solid fa-phone"></i>
+            <span>+90 462 377 3000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <div>© 2026 Karadeniz Teknik Üniversitesi. Tüm Hakları Saklıdır.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">KVKK</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title"><i class="fa-solid fa-magnifying-glass" style="color: var(--ktu-blue-accent);"></i> KTÜ Hızlı Arama</h3>
+        <button class="modal-close-btn" id="closeSearchModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="siteSearchInput" class="form-control" placeholder="Arama yapın...">
+        <div class="search-results-list" id="searchResults"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

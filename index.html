@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karadeniz Teknik Üniversitesi | KTÜ Resmi Web Portalı</title>
+  <meta name="description" content="Karadeniz Teknik Üniversitesi (KTÜ) 1955 yılından bu yana öncü eğitimi, güçlü araştırma altyapısı ve modern Kanuni Kampüsü ile geleceği şekillendiriyor.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Work Sans (Başlıklar) & Roboto Slab -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@400;600;700;800;900&family=Work+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6.5.1 İkon Kütüphanesi -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Modern Stil Dosyası -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Üst Bilgi Çubuğu (Top Bar) - Değiştirilmeden Korundu
+       ======================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="research-badge">
+          <i class="fa-solid fa-award"></i> Araştırma Üniversitesi
+        </span>
+        <div class="top-bar-links">
+          <a href="contact.html"><i class="fa-solid fa-location-dot"></i> Trabzon, Kanuni Kampüsü</a>
+          <a href="tel:04623773000"><i class="fa-solid fa-phone"></i> +90 462 377 3000</a>
+          <a href="https://www.ktu.edu.tr/tr/harita" target="_blank"><i class="fa-solid fa-compass"></i> Sanal Kampüs Turu</a>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <!-- Karanlık/Aydınlık Mod Butonu -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Karanlık Moda Geç">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <!-- Dil Seçimi -->
+        <div class="lang-switch">
+          <a href="#" class="active">TR</a>
+          <a href="#">EN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. Ana Navigasyon (Header) - Değiştirilmeden Korundu
+       ======================================================================== -->
+  <header class="main-header">
+    <div class="container navbar">
+      <!-- Logo ve Üniversite Başlığı -->
+      <a href="index.html" class="brand-logo">
+        <img src="images/logo.png" alt="KTÜ Logosu">
+        <div class="brand-text">
+          <span class="brand-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</span>
+          <span class="brand-subtitle">1955 • Araştırma ve Yenilik Merkezi</span>
+        </div>
+      </a>
+
+      <!-- Menü Linkleri -->
+      <nav class="nav-menu" id="navMenu">
+        <div class="nav-item">
+          <a href="index.html" class="nav-link active">Anasayfa</a>
+        </div>
+        <div class="nav-item">
+          <a href="about.html" class="nav-link">Kurumsal <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown-menu">
+            <a href="about.html" class="dropdown-item"><i class="fa-solid fa-landmark"></i> KTÜ Tarihçesi</a>
+            <a href="about.html#rector-message" class="dropdown-item"><i class="fa-solid fa-user-tie"></i> Rektörün Mesajı</a>
+            <a href="about.html#mission-vision" class="dropdown-item"><i class="fa-solid fa-bullseye"></i> Misyon & Vizyon</a>
+            <a href="about.html#campus-facilities" class="dropdown-item"><i class="fa-solid fa-tree"></i> Kampüs Olanakları</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="course.html" class="nav-link">Akademik <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown-menu">
+            <a href="course.html?filter=engineering" class="dropdown-item"><i class="fa-solid fa-gears"></i> Mühendislik Fakültesi</a>
+            <a href="course.html?filter=medicine" class="dropdown-item"><i class="fa-solid fa-heart-pulse"></i> Tıp Fakültesi</a>
+            <a href="course.html?filter=marine" class="dropdown-item"><i class="fa-solid fa-ship"></i> Sürmene Deniz Bilimleri</a>
+            <a href="course.html?filter=architecture" class="dropdown-item"><i class="fa-solid fa-compass-drafting"></i> Mimarlık Fakültesi</a>
+            <a href="course.html" class="dropdown-item"><i class="fa-solid fa-layer-group"></i> Tüm Fakülte ve Bölümler</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="blog.html" class="nav-link">Haber & Etkinlik</a>
+        </div>
+        <div class="nav-item">
+          <a href="contact.html" class="nav-link">İletişim & Ulaşım</a>
+        </div>
+      </nav>
+
+      <!-- Aksiyonlar: Arama & Mobil Menü -->
+      <div class="nav-actions">
+        <button class="search-trigger-btn open-search-modal" title="Site İçi Arama">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Ara...</span>
+          <span class="search-kbd">Ctrl+K</span>
+        </button>
+
+        <!-- Mobil Menü Butonu -->
+        <button class="mobile-toggle-btn" id="mobileToggleBtn" aria-label="Menüyü Aç/Kapat">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. Hero Alanı & Kâğıt Geçiş Sahnesi (Johns Hopkins İlhamlı)
+       NOT: İleride video için hazırlandı. Şimdilik kampus fotoğrafı yer alıyor.
+       ======================================================================== -->
+  <div class="hero-stage" id="heroStage">
+    <!-- Sabit Kalan Hero Medyası (Sticky Hero) -->
+    <div class="hero-sticky-media" id="heroStickyMedia">
+      <div class="hero-media-wrapper">
+        <!-- İLERİDE VİDEO EKLENECEĞİNDE BU SATIR YERİNE AŞAĞIDAKİ VIDEO KODU GELECEK:
+             <video autoplay muted loop playsinline poster="images/hero_campus.jpg" class="hero-bg-media" id="heroBgVideo">
+               <source src="video/kampus.mp4" type="video/mp4">
+             </video>
+        -->
+        <img src="images/hero_campus.jpg" alt="KTÜ Kanuni Kampüsü Genel Görünüm" class="hero-bg-media" id="heroBgMedia">
+        
+        <div class="hero-media-overlay"></div>
+
+        <!-- Hero Ortasındaki İhtişamlı Karşılama (JHU Logo & Slogan Tarzı) -->
+        <div class="hero-center-content">
+          <div class="hero-seal-badge">
+            <img src="images/logo.png" alt="KTÜ Resmi Amblemi" class="hero-seal-img">
+          </div>
+          <h1 class="hero-main-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</h1>
+          <p class="hero-tagline">1955 • Türkiye'nin İlk ve Öncü Araştırma Teknik Üniversitesi</p>
+          
+          <a href="#manifesto" class="hero-scroll-cue" aria-label="Aşağı Kaydırın">
+            <span>AŞAĞI KAYDIRIN</span>
+            <div class="scroll-arrow-anim">
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         4. Hero Üzerine Kâğıt Gibi Kayarak Çıkan MANİFESTO Bölümü
+         Johns Hopkins'in "Research Saves Lives" bölümü karşılığı
+         ======================================================================== -->
+    <section class="paper-sheet paper-manifesto" id="manifesto">
+      <!-- Yırtık Kâğıt Üst Kenarı (SVG) -->
+      <div class="torn-paper-edge-top" aria-hidden="true"></div>
+
+      <div class="container manifesto-inner">
+        <div class="manifesto-eyebrow">
+          <span class="jhu-label"><i class="fa-solid fa-microscope"></i> BİLİM & İNOVASYON</span>
+          <span class="jhu-label-sub">TRABZON • KANUNİ KAMPÜSÜ</span>
+        </div>
+
+        <h2 class="manifesto-huge-title">
+          Araştırma <br>
+          <span class="manifesto-sky">Geleceği Şekillendirir.</span>
+        </h2>
+
+        <div class="manifesto-columns">
+          <p class="manifesto-lead">
+            Karadeniz Teknik Üniversitesi'nde ve dünyanın öncü araştırma kurumlarında yürütülen bilimsel çalışmalar olmadan; derin deniz ekolojisinden yapay zekaya, yerli savunma sanayiinden yaşam kurtaran tıbbi tedavilere kadar geleceğin büyük atılımları var olamazdı. 1955'ten beri bilimle üretiyor, Karadeniz'den dünyaya ulaşıyoruz.
+          </p>
+          <div class="manifesto-actions">
+            <a href="about.html" class="jhu-btn-solid">
+              <span>ARAŞTIRMALARIMIZI KEŞFEDİN</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="course.html" class="jhu-btn-outline">
+              <span>AKADEMİK PROGRAMLAR (12 FAKÜLTE)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================================================
+       5. Keşfet Şeridi (JHU "DISCOVER" Strip)
+       ======================================================================== -->
+  <section class="discover-strip-section">
+    <div class="container">
+      <div class="discover-bar">
+        <div class="discover-badge">KEŞFET</div>
+        <div class="discover-links">
+          <a href="course.html" class="discover-link">
+            <span>Öncü Lisans Araştırmaları</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <a href="about.html#campus-facilities" class="discover-link">
+            <span>KTÜLabs Merkezi Araştırma</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <a href="about.html" class="discover-link">
+            <span>Trabzon Teknokent & Kuluçka</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <a href="blog.html" class="discover-link">
+            <span>TEKNOFEST Creatiny Şampiyonlukları</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <a href="contact.html" class="discover-link">
+            <span>Farabi Genom & Kanser Merkezi</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Öne Çıkan Araştırma ve Haber Vitrini (JHU Hub Haberleri & Kâğıt Kolajı)
+       ======================================================================== -->
+  <section class="paper-light-section news-hub-section">
+    <div class="torn-paper-edge-white-top" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="section-kicker-row">
+        <span class="jhu-kicker">KTÜ HABER & GELİŞMELER</span>
+        <a href="blog.html" class="view-all-link">Tüm Bültenleri Gör <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Büyük Öne Çıkan Hikâye (Görsel + Üzerine Binen Beyaz Kâğıt Kart) -->
+      <div class="featured-story-collage">
+        <div class="featured-image-box">
+          <img src="images/creatin_lab.jpg" alt="KTÜ Robotik ve İnovasyon Laboratuvarı">
+          <div class="featured-offset-frame"></div>
+        </div>
+        <div class="featured-card-overlap">
+          <div class="featured-meta">
+            <span class="meta-tag"><i class="fa-solid fa-trophy"></i> TEKNOFEST 2026</span>
+            <span class="meta-date">22 Ekim 2026</span>
+          </div>
+          <h3 class="featured-headline">
+            KTÜ FIRTINA CREATINY: HYPERLOOP GELİŞTİRMEDE 3. KEZ TÜRKİYE ŞAMPİYONU
+          </h3>
+          <p class="featured-summary">
+            Mühendislik Fakültesi öğrencilerimiz tarafından kurulan Creatiny takımı, vakum tüplü raylı sistemlerde 850 km/s hıza ulaşan yerli prototipiyle üst üste üçüncü kez ulusal birincilik kupasını Trabzon'a getirdi.
+          </p>
+          <a href="blog.html" class="jhu-text-cta">
+            HİKÂYENİN TAMAMINI OKUYUN <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3'lü Yatay Haber Kartları -->
+      <div class="hub-cards-grid">
+        <article class="hub-card">
+          <div class="hub-card-thumb">
+            <img src="images/maden_muhendisligi.jpg" alt="Maden Mühendisliği Başarısı">
+            <span class="hub-pill">KÜRESEL SIRALAMA</span>
+          </div>
+          <div class="hub-card-content">
+            <div class="hub-card-date">12 Ekim 2026 • Mühendislik Fak.</div>
+            <h4 class="hub-card-title">Maden Mühendisliğimiz Türkiye'de 1., Dünyada 14. Oldu</h4>
+            <p class="hub-card-text">ScholarGPS 2026 bağımsız değerlendirme raporuna göre bölümümüz dünya elitleri arasında yer aldı.</p>
+            <a href="blog.html" class="hub-card-link">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="hub-card">
+          <div class="hub-card-thumb">
+            <img src="images/kutuphane.jpg" alt="Merkez Kütüphane ve Fen Fakültesi">
+            <span class="hub-pill">YAPAY ZEKA & VERİ</span>
+          </div>
+          <div class="hub-card-content">
+            <div class="hub-card-date">07 Ekim 2026 • Fen Fakültesi</div>
+            <h4 class="hub-card-title">Yeni Nesil Bilişim ve İnovasyon Laboratuvarı Açıldı</h4>
+            <p class="hub-card-text">Yüksek başarımlı GPU kümesi ve siber güvenlik araştırma merkezi araştırmacıların hizmetine sunuldu.</p>
+            <a href="blog.html" class="hub-card-link">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="hub-card">
+          <div class="hub-card-thumb">
+            <img src="images/trabzon_coast.jpg" alt="Sürmene Deniz Bilimleri">
+            <span class="hub-pill">DENİZ BİLİMLERİ</span>
+          </div>
+          <div class="hub-card-content">
+            <div class="hub-card-date">28 Eylül 2026 • Sürmene Kampüsü</div>
+            <h4 class="hub-card-title">Karadeniz Ekosistemi Araştırma Gemisi Yeni Seferine Çıktı</h4>
+            <p class="hub-card-text">Derin deniz dip suları ve hidrojen sülfür katmanlarının iklim değişikliğine etkileri inceleniyor.</p>
+            <a href="blog.html" class="hub-card-link">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="hub-footer-cta">
+        <a href="blog.html" class="jhu-btn-solid dark">TÜM HABERLER VE DUYURULAR ARŞİVİ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. Kampüsten Anlar (JHU 4-Sütun Tam Genişlik Instagram / Kampüs Şeridi)
+       ======================================================================== -->
+  <section class="campus-moments-section">
+    <div class="moments-grid">
+      <div class="moment-item">
+        <img src="images/campus_life.jpg" alt="Kanuni Kampüsü Öğrenci Yaşamı">
+        <div class="moment-overlay">
+          <span class="moment-icon"><i class="fa-brands fa-instagram"></i></span>
+          <span class="moment-caption">Kanuni Kampüsü'nde Bahar #KTÜ1955</span>
+        </div>
+      </div>
+      <div class="moment-item">
+        <img src="images/creatin_lab.jpg" alt="Mühendislik ve Teknoloji Atölyeleri">
+        <div class="moment-overlay">
+          <span class="moment-icon"><i class="fa-brands fa-instagram"></i></span>
+          <span class="moment-caption">Geleceğin Mühendisleri İş Başında</span>
+        </div>
+      </div>
+      <div class="moment-item">
+        <img src="images/library.jpg" alt="Faik Ahmet Barutçu Kütüphanesi">
+        <div class="moment-overlay">
+          <span class="moment-icon"><i class="fa-brands fa-instagram"></i></span>
+          <span class="moment-caption">7/24 Yaşayan Kütüphane</span>
+        </div>
+      </div>
+      <div class="moment-item">
+        <img src="images/trabzon_coast.jpg" alt="Karadeniz ve Kampüs Manzarası">
+        <div class="moment-overlay">
+          <span class="moment-icon"><i class="fa-brands fa-instagram"></i></span>
+          <span class="moment-caption">Maviyle Yeşilin Buluştuğu Yer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. Sayılarla KTÜ (Modernized Stats Paper Grid)
+       ======================================================================== -->
+  <section class="stats-paper-section">
+    <div class="torn-paper-edge-top" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="section-kicker-center">
+        <span class="jhu-kicker light">KÖKLÜ AKADEMİK MİRAS</span>
+        <h2 class="stats-paper-title">Rakamlarla Karadeniz Teknik Üniversitesi</h2>
+        <p class="stats-paper-subtitle">1955'ten günümüze bilim, teknoloji ve toplumsal kalkınmanın öncüsü.</p>
+      </div>
+
+      <div class="stats-paper-grid">
+        <div class="stat-paper-card">
+          <div class="stat-paper-number" data-count="32055">0</div>
+          <div class="stat-paper-label">Aktif Lisans ve Lisansüstü Öğrenci</div>
+          <div class="stat-paper-line cyan"></div>
+        </div>
+
+        <div class="stat-paper-card">
+          <div class="stat-paper-number" data-count="266981">0</div>
+          <div class="stat-paper-label">Dünya Çapında Başarılı Mezun</div>
+          <div class="stat-paper-line gold"></div>
+        </div>
+
+        <div class="stat-paper-card">
+          <div class="stat-paper-number" data-count="2174">0</div>
+          <div class="stat-paper-label">Nitelikli Akademik Personel</div>
+          <div class="stat-paper-line blue"></div>
+        </div>
+
+        <div class="stat-paper-card">
+          <div class="stat-paper-number" data-count="265">0</div>
+          <div class="stat-paper-label">Uluslararası Akredite Program</div>
+          <div class="stat-paper-line sky"></div>
+        </div>
+
+        <div class="stat-paper-card">
+          <div class="stat-paper-number" data-count="1578775">0</div>
+          <div class="stat-paper-label">Dijital ve Basılı Kütüphane Kaynağı</div>
+          <div class="stat-paper-line emerald"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="torn-paper-edge-bottom" aria-hidden="true"></div>
+  </section>
+
+  <!-- ========================================================================
+       9. KTÜ'de Yaşam ve Bilim (JHU Student / Faculty Stories Collage)
+       ======================================================================== -->
+  <section class="stories-collage-section">
+    <div class="container">
+      <div class="stories-collage-wrapper">
+        <!-- Sol: Büyük Öğrenci Portresi ve Çember Çizgi -->
+        <div class="story-portrait-col">
+          <div class="story-circle-ring"></div>
+          <div class="story-photo-frame">
+            <img src="images/student_researcher.jpg" alt="KTÜ Araştırmacı Öğrencisi">
+          </div>
+        </div>
+
+        <!-- Sağ: Büyük Alıntı Kartı (JHU Quote Style) -->
+        <div class="story-quote-card">
+          <div class="quote-mark">“</div>
+          <h3 class="quote-headline">
+            Daha önce hiç bu kadar yüksek motivasyonlu, beni her gün daha iyisini yapmaya teşvik eden araştırmacılarla bir arada olmamıştım.
+          </h3>
+          <div class="quote-author-info">
+            <div class="author-name">Zeynep Yılmaz</div>
+            <div class="author-role">Elektrik-Elektronik Mühendisliği 4. Sınıf & Creatiny Otonom Sistemler Kaptanı</div>
+          </div>
+          <div class="quote-cta-row">
+            <a href="about.html#rector-message" class="jhu-text-cta">
+              REKTÖRÜN MESAJI VE AKADEMİK VİZYON <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="about.html" class="jhu-btn-outline dark">
+              KAMPÜS YAŞAMINI KEŞFET
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. 12 Fakültemiz Geleceğe Hazırlar (JHU "Our Ten Schools" Academic Navigator)
+       ======================================================================== -->
+  <section class="schools-navigator-section">
+    <div class="container">
+      <div class="schools-banner-box">
+        <div class="schools-kicker">AKADEMİK BİRİMLERİMİZ</div>
+        <h3 class="schools-heading">ON İKİ FAKÜLTEMİZ DÜNYA KALİTESİNDE EĞİTİM VE BİLİM ÜRETİYOR</h3>
+        
+        <div class="schools-links-inline">
+          <a href="course.html?filter=engineering" class="school-tag">Mühendislik</a>
+          <span class="sep">|</span>
+          <a href="course.html?filter=medicine" class="school-tag">Tıp & Farabi</a>
+          <span class="sep">|</span>
+          <a href="course.html?filter=marine" class="school-tag">Sürmene Deniz Bilimleri</a>
+          <span class="sep">|</span>
+          <a href="course.html?filter=architecture" class="school-tag">Mimarlık</a>
+          <span class="sep">|</span>
+          <a href="course.html?filter=science" class="school-tag">Fen (Yazılım)</a>
+          <span class="sep">|</span>
+          <a href="course.html?filter=iibf" class="school-tag">İktisadi ve İdari Bilimler</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">Diş Hekimliği</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">Eczacılık</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">Orman Fakültesi</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">Sağlık Bilimleri</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">İletişim Fakültesi</a>
+          <span class="sep">|</span>
+          <a href="course.html" class="school-tag">Edebiyat Fakültesi</a>
+        </div>
+
+        <div class="schools-cta">
+          <a href="course.html" class="jhu-btn-solid">TÜM BÖLÜM VE PROGRAM LİSTESİ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       11. Trabzon: Kampüsümüzün Doğal Uzantısı (JHU "Baltimore is our hometown")
+       ======================================================================== -->
+  <section class="trabzon-connection-section">
+    <div class="trabzon-bg-cover">
+      <img src="images/trabzon_coast.jpg" alt="Trabzon ve Karadeniz Kıyısı">
+      <div class="trabzon-gradient-overlay"></div>
+    </div>
+
+    <div class="container trabzon-content-box">
+      <div class="jhu-kicker sky">ŞEHİR VE KAMPÜS BÜTÜNLÜĞÜ</div>
+      <h2 class="trabzon-huge-title">
+        Trabzon, bir şehirden fazlası— <br>
+        Kampüsümüzün ve hayal gücümüzün doğal uzantısı.
+      </h2>
+      <p class="trabzon-desc">
+        Tarihi İpek Yolu'nun Karadeniz'e açılan kadim limanı Trabzon; yemyeşil doğası, sonsuz deniz ufku ve köklü kültürüyle Kanuni Kampüsü'nün ayrılmaz bir parçasıdır. Burada eğitim almak, yalnızca sınıflarda değil, Karadeniz'in ritminde hayatı öğrenmektir.
+      </p>
+      <div class="trabzon-actions">
+        <a href="contact.html" class="jhu-btn-solid">KAMPÜS ULAŞIMI VE REHBERİ</a>
+        <a href="https://www.ktu.edu.tr/tr/harita" target="_blank" class="jhu-btn-outline">SANAL TUR İLE GEZİN</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       12. Yırtık Kâğıt Üst Kenarlı Kurumsal Footer (JHU Style Footer)
+       ======================================================================== -->
+  <footer class="paper-footer">
+    <div class="torn-paper-edge-top" aria-hidden="true"></div>
+
+    <div class="container footer-content-grid">
+      <!-- Sütun 1: KTÜ Kimliği -->
+      <div class="footer-identity-col">
+        <div class="footer-seal-row">
+          <img src="images/logo.png" alt="KTÜ Logosu" class="footer-seal-img">
+          <div>
+            <h4 class="footer-uni-title">KARADENİZ TEKNİK ÜNİVERSİTESİ</h4>
+            <span class="footer-est">KURULUŞ 1955 • TRABZON</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Türkiye'nin ilk kurulan teknik üniversitelerinden biri olarak uluslararası düzeyde araştırmacı, etik ve yenilikçi nesiller yetiştiriyoruz.
+        </p>
+        <div class="footer-social-row">
+          <a href="https://twitter.com/ktu1955" target="_blank" class="jhu-social-icon" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://facebook.com/ktu1955" target="_blank" class="jhu-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://instagram.com/ktu1955" target="_blank" class="jhu-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://linkedin.com/school/ktu1955" target="_blank" class="jhu-social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://youtube.com/ktu1955" target="_blank" class="jhu-social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Sütun 2: İletişim & Lokasyon -->
+      <div class="footer-contact-col">
+        <h5 class="footer-section-title">İletişim & Konum</h5>
+        <div class="footer-info-lines">
+          <div class="info-line">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Kanuni Kampüsü, Üniversite Mah., 61080 Trabzon / TÜRKİYE</span>
+          </div>
+          <div class="info-line">
+            <i class="fa-solid fa-phone"></i>
+            <span>Santral: +90 462 377 3000</span>
+          </div>
+          <div class="info-line">
+            <i class="fa-solid fa-envelope"></i>
+            <span>iletisim@ktu.edu.tr</span>
+          </div>
+          <div class="info-line">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Kampüs Güvenlik: +90 462 377 2222</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sütun 3: Hızlı Bağlantılar ve E-Hizmetler -->
+      <div class="footer-nav-col">
+        <h5 class="footer-section-title">Hızlı Bağlantılar</h5>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Anasayfa</a></li>
+          <li><a href="about.html">Üniversitemiz & Tarihçe</a></li>
+          <li><a href="course.html">Fakülte ve Bölümler</a></li>
+          <li><a href="blog.html">Haberler ve Duyurular</a></li>
+          <li><a href="contact.html">Kampüs Ulaşım & İletişim</a></li>
+        </ul>
+      </div>
+
+      <!-- Sütun 4: E-Kampüs ve Arama -->
+      <div class="footer-services-col">
+        <h5 class="footer-section-title">E-Hizmetler</h5>
+        <ul class="footer-links-list">
+          <li><a href="about.html#campus-facilities">Merkez Kütüphane Veritabanı</a></li>
+          <li><a href="contact.html">Farabi Hastanesi E-Randevu</a></li>
+          <li><a href="#">Öğrenci Bilgi Sistemi (BYBS)</a></li>
+          <li><a href="#">Akademik Veri Sistemi (AVESİS)</a></li>
+          <li><a href="#">KTÜ Kurumsal E-Posta</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- En Alt Telif & Yasal Bar -->
+    <div class="container footer-legal-bar">
+      <div>© 2026 Karadeniz Teknik Üniversitesi. Tüm Hakları Saklıdır.</div>
+      <div class="footer-legal-links">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">KVKK Bilgilendirme</a>
+        <a href="#">Erişilebilirlik</a>
+        <a href="#">Bilgi Edinme</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       13. Hızlı Arama Modalı (Ctrl + K) - Korundu
+       ======================================================================== -->
+  <div class="modal-backdrop" id="searchModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--ktu-blue-accent);"></i>
+          KTÜ Hızlı Arama
+        </h3>
+        <button class="modal-close-btn" id="closeSearchModal" aria-label="Kapat">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="siteSearchInput" class="form-control" placeholder="Bölüm, fakülte, takvim veya duyuru ara... (Örn: Yazılım, Tıp, Maden)">
+        <div class="search-results-list" id="searchResults">
+          <!-- Dinamik JavaScript Sonuçları Buraya Eklenir -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ana JavaScript Dosyası -->
+  <script src="main.js"></script>
+</body>
+</html>
